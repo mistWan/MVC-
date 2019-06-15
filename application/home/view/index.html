@@ -1,0 +1,164 @@
+<{extends file="layout.html"}>
+<{block name="content"}>
+<div class="aw-container-wrap">
+    <div class="container category">
+        <div class="row">
+            <div class="col-sm-12">
+                <{foreach $cat_list as $cat}>
+                <dl style="float:left;width:20%;">
+                    <dt>
+                        <img alt="默认分类" src="/iou.cn/application/public/thumb/category/<{$cat['cat_logo']}>"></dt>
+                    <dd style="margin: -47px 0 0 60px">
+                        <p class="title">
+                            <a href="category.html"><{$cat['cat_name']}></a>
+                        </p>
+                        <span><{$cat['cat_desc']}></span>
+                    </dd>
+                </dl>
+                <{/foreach}>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix">
+                <div class="col-sm-12 col-md-9 aw-main-content">
+                    <!-- end 新消息通知 -->
+
+                    <!-- tab切换 -->
+                    <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+                        <li>
+                            <a href="">等待回复</a>
+                        </li>
+                        <li>
+                            <a id="sort_control_hot" href="">热门</a>
+                        </li>
+                        <li>
+                            <a href="">推荐</a>
+                        </li>
+                        <li class="active">
+                            <a href="">最新</a>
+                        </li>
+
+                        <h2 class="hidden-xs">
+                            <i class="icon icon-list"></i>
+                            发现
+                        </h2>
+                    </ul>
+                    <!-- end tab切换 -->
+
+                    <div class="aw-mod aw-explore-list">
+                        <div class="mod-body">
+                            <div class="aw-common-list">
+                                <{foreach $questions as $q}>
+                                <div data-topic-id="2," class="aw-item active">
+                                    <div style="float: left;width: 9%;margin-top: 6px">
+                                        <a rel="nofollow" href="people.html" data-id="1" class="aw-user-name hidden-xs">
+                                            <img src="<{PUBLIC_PATH}>common/avatar-max-img.png" width="50">
+                                        </a>
+                                    </div>
+                                    <div class="aw-question-content" style="float: left;width: 91%">
+                                        <h4>
+                                            <a href="/iou.cn/application/public/html/<{$q['static_url']}>">
+                                                <{$q['question_title']}>
+                                            </a>
+
+                                            <!--<a href="?c=question&a=detailAction&id=<{$q['question_id']}>">
+                                                <{$q['question_title']}>
+                                            </a>-->
+                                        </h4>
+                                        <a class="pull-right text-color-999" href="answer.html">回复</a>
+                                        <p>
+                                            <a href="category.html" class="aw-question-tags">
+                                                <{$q['cat_name']}>
+                                            </a>•
+                                            <a class="aw-user-name" href="people.html"><{$q['username']}></a>
+                                            <span class="text-color-999">发起了问题 •
+											<{$q['focus_num']|default:100}> 人关注 •
+											<{$q['reply_num']|default:100}> 个回复 •
+											<{$q['view_num']|default:200}> 次浏览 •
+											<{$q['pub_time']|date_format:'%Y-%m-%d %H:%M:%S'}> </span>
+                                            <span class="text-color-999 related-topic hide">• 来自相关话题</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <{/foreach}>
+                            </div>
+                        </div>
+                        <div class="mod-footer">
+                            <div class="page-control">
+                                <{$pagebar}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
+                    <div class="aw-mod aw-text-align-justify">
+                        <div class="mod-head">
+                            <a class="pull-right" href="topic_index.html">更多 &gt;</a>
+                            <h3>热门话题</h3>
+                        </div>
+                        <div class="mod-body">
+                            <{foreach $hot_topics as $hot}>
+                            <dl>
+                                <dt class="pull-left aw-border-radius-5" style="width: 20%;">
+                                    <a href="topic.html">
+                                        <img src="/iou.cn/application/public/thumb/<{$hot['topic_pic']}>" alt=""></a>
+                                </dt>
+                                <dd class="pull-left" style="width: 80%;">
+                                    <p class="clearfix">
+										<span class="topic-tag">
+											<a data-id="2" class="text" href="topic.html">
+											<{$hot['topic_title']}>
+											</a>
+										</span>
+                                    </p>
+                                    <p><b><{$hot['q_nums']}></b>个问题,
+                                        <b><{$hot['user_nums']}></b>人关注
+                                    </p>
+                                </dd>
+                            </dl>
+                            <{/foreach}>
+                        </div>
+                    </div>
+
+                    <div class="aw-mod aw-text-align-justify">
+                        <div class="mod-head">
+                            <a class="pull-right" href="?/people/">更多 &gt;</a>
+                            <h3>热门用户</h3>
+                        </div>
+                        <div class="mod-body">
+                            <{foreach $hot_users as $hot}>
+                            <dl>
+                                <dt class="pull-left aw-border-radius-5" style="width: 20%">
+                                    <a href="people.html">
+                                        <img src="<{PUBLIC_PATH}>common/avatar-mid-img.png" alt=""></a>
+                                </dt>
+                                <dd class="pull-left" style="width: 80%">
+                                    <a class="aw-user-name" data-id="2" href="people.html">
+                                        <{$hot['username']}>
+                                    </a>
+                                    <p class="signature"></p>
+                                    <p>
+                                        <b><{$hot['q_nums']}></b>个问题,
+                                        <b>0</b>次赞同
+                                    </p>
+                                </dd>
+                            </dl>
+                            <{/foreach}>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end 侧边栏 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="aw-ajax-box" id="aw-ajax-box"></div>
+
+<{/block}>

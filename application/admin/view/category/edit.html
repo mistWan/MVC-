@@ -1,0 +1,94 @@
+<{extends file="common/layout.html"}>
+<{block name="content"}>
+<div class="aw-content-wrap">
+    <form method="post" id="category_form"
+          action="?m=admin&c=category&a=updateAction" enctype="multipart/form-data">
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">分类编辑</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类标题:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" value="<{$cat_list[0]['cat_name']}>" name="cat_name"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类描述:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" value="<{$cat_list[0]['cat_desc']}>" name="cat_desc"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类图标:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="file" value="<{THUMB_PATH}>category/<{$cat_list[0]['cat_logo']}>" name="cat_logo" class="form-control">
+                                    <p>ICON已存在</p>
+                                    <!--<img src="<{THUMB_PATH}>category/<{$cat_list[0]['cat_logo']}>" alt="">-->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">父级分类:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0">无</option>
+                                        <{foreach $cat_lists as $key=>$val}>
+                                        <option
+                                        <{if $cat_list[0]["parent_id"]==$val['cat_id']}>selected<{/if}>
+                                        value="<{$val['cat_id']}>" >
+                                            <{$val['cat_name']|indent:$val['level']:"&nbsp;&nbsp;"}>
+                                        </option>
+                                        <{/foreach}>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="cat_id" value="<{$cat_list[0]['cat_id']}>">
+                            <input type="hidden" name="old_cat_logo" value="<{$cat_list[0]['cat_logo']}>">
+                            <input type="submit"
+                                   class="btn btn-primary center-block" value="保存设置">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="aw-footer">
+    <p>
+        Copyright &copy; 2016-2099 - Powered By
+        <a target="blank" href="">有问必答 1.0</a>
+    </p>
+</div>
+<{/block}>

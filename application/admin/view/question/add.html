@@ -1,0 +1,41 @@
+﻿<{extends file="common/layout.html"}>
+<{block name="content"}>
+<div class="aw-content-wrap">
+        <form method="post" id="category_form" 
+        action="?m=admin&c=question&a=collectAction">
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">添加分类</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody><tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-4 control-label" 
+                                style="text-align:center;margin-top:10px">
+                                		网页地址:
+                                </span>
+                                <div class="col-sm-8 col-xs-8">
+                                    <input type="text" placeholder="网页地址" name="url" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn btn-primary center-block" value="开始采集">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+
+<{/block}>

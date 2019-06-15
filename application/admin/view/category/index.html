@@ -1,0 +1,95 @@
+<{extends file="common/layout.html"}>
+<{block name="content"}>
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <span class="pull-left">分类管理</span>
+            </h3>
+        </div>
+
+        <div class="tab-content mod-body">
+            <div class="alert alert-success hide error_message"></div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>分类标题</th>
+                        <th>排序</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form onsubmit="return false" method="post" action="#" id="category_form"></form>
+                    <!--<tr>
+                        <td>
+                            <a href="#">默认分类</a>
+                        </td>
+                        <td>
+                            <div class="col-sm-6 clo-xs-12 col-lg-offset-3">
+                                0
+                            </div>
+                        </td>
+                        <td>
+                            <a title="" class="icon icon-edit md-tip" data-toggle="tooltip" href="category_edit.html"
+                               data-original-title="编辑"></a>
+                            <a title="" class="icon icon-trash md-tip" data-toggle="tooltip"
+                               onclick="AWS.ajax_request(G_BASE_URL + '/admin/ajax/remove_category/', 'category_id=1');"
+                               data-original-title="删除"></a>
+
+                        </td>
+                    </tr>-->
+                    <{foreach $cat_list as $val}>
+                    <tr>
+                        <td>
+                            <a href="javascript:;"><{$val['cat_name']}></a>
+                        </td>
+                        <td>
+                            <div class="col-sm-6 clo-xs-12 col-lg-offset-3">
+                                <{$val['cat_id']}>
+                            </div>
+                        </td>
+                        <td>
+                            <a title="" class="icon icon-edit md-tip" data-toggle="tooltip" href="?m=admin&c=category&a=editAction&cat_id=<{$val['cat_id']}>"
+                               data-original-title="编辑"></a>
+                            <a href="?m=admin&c=category&a=deleteAction&cat_id=<{$val['cat_id']}>" title="删除" class="icon icon-trash md-tip" data-toggle="tooltip"
+                               onclick="AWS.ajax_request(G_BASE_URL + '/admin/ajax/remove_category/', 'category_id=2');"
+                               data-original-title="删除"></a>
+
+                        </td>
+                    </tr>
+                    <{/foreach}>
+
+                    </tbody>
+                    <tfoot class="mod-foot-center">
+                    <tr>
+                        <td colspan="3">
+                            <form onsubmit="return false" method="post"
+                                  action="http://localhost/wecenter/?/admin/ajax/save_category/" id="add_category_form">
+
+                                <div class="pull-right" style="margin-right: 150px">
+                                    <a class="btn-primary btn" href="?m=admin&c=category&a=addAction">添加分类</a>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="hide" id="target-category">
+        <option value="1">默认分类</option>
+    </div>
+</div>
+
+
+<div class="aw-footer">
+    <p>
+        Copyright &copy; 2016-2099 - Powered By
+        <a target="blank" href="http://helloitbull.net/">有问必答 1.0</a>
+    </p>
+</div>
+
+<{/block}>
